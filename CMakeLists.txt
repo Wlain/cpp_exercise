@@ -3,4 +3,6 @@ project(cpp_exercise)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(cpp_exercise main.cpp)
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
+
+add_executable(cpp_exercise ${SOURCES})
