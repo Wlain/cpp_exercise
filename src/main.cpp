@@ -1,8 +1,9 @@
 extern void stlTest01();
 extern void arrayTest();
+extern void vectorTest();
 
 int main()
 {
-    arrayTest();
+    vectorTest();
     return 0;
 }

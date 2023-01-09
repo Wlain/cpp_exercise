@@ -10,4 +10,4 @@ include_directories(
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
-add_executable(cpp_exercise ${SOURCES} src/stl/arrayTest.cpp src/utils/timer.cpp src/utils/timer.h)
+add_executable(cpp_exercise ${SOURCES})

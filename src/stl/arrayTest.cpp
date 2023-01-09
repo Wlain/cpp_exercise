@@ -1,10 +1,11 @@
 //
 // Created by william on 2023/1/9.
 //
+#include "timer.h"
+
 #include <array>
 #include <cstdlib>
 #include <iostream>
-#include <timer.h>
 
 #define ARRAY_SIZE 500000
 
@@ -12,7 +13,6 @@ int compareLongs(const void* a, const void* b)
 {
     return (*(long*)a - *(long*)b);
 }
-
 void arrayTest()
 {
     std::array<long, ARRAY_SIZE> arr{};
