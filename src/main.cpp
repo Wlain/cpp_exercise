@@ -1,9 +1,8 @@
-#include <iostream>
-
 extern void stlTest01();
+extern void arrayTest();
 
 int main()
 {
-    stlTest01();
+    arrayTest();
     return 0;
 }
