@@ -4,14 +4,15 @@
 
 #include "timer.h"
 
-#include <forward_list>
 #include <iostream>
+#include <map>
 
-void forwardListTest()
+// 使用：红黑树实现
+void mulitimapTest()
 {
-    std::forward_list<std::string> li;
+    std::multimap<long, std::string> mulMap;
     char buf[10]{};
-
+    
     Timer timer;
     constexpr long value = 1000000;
     for (long i = 0; i < value; ++i)
@@ -20,7 +21,7 @@ void forwardListTest()
         try
         {
             snprintf(buf, 10, "%d", rand());
-            li.push_front(buf);
+            mulMap.emplace(std::pair{i, buf});
         }
         catch (std::exception& e)
         {
@@ -30,22 +31,17 @@ void forwardListTest()
         }
     }
     std::cout << "milli-seconds:" << timer.elapsed() << " ms" << std::endl;
-    std::cout << "li.max_size():" << li.max_size() << std::endl;
-    std::cout << "li.front():" << li.front() << std::endl;
+    std::cout << "mulMap.size():" << mulMap.size() << std::endl;
+    std::cout << "mulMap.max_size():" << mulMap.max_size() << std::endl;
 
-    std::string target = "23456";
+    constexpr long target = 23456;
     {
         timer.reset();
-        auto item = std::find(li.begin(), li.end(), target);
+        auto item = mulMap.find(target);
         std::cout << "find() milli-seconds:" << timer.elapsed() << " ms\n";
-        if (item != li.end())
-            std::cout << "found " << *item << std::endl;
+        if (item != mulMap.end())
+            std::cout << "found " << (*item).second << std::endl;
         else
             std::cout << "not found!" << std::endl;
-    }
-    {
-        timer.reset();
-        li.sort();
-        std::cout << "sort milli-seconds:" << timer.elapsed() << " ms\n";
     }
 }

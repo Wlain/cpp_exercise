@@ -1,17 +1,17 @@
 //
-// Created by william on 2023/1/10.
+// Created by wilmulSetam on 2023/1/10.
 //
-
 #include "timer.h"
 
-#include <forward_list>
 #include <iostream>
+#include <set>
 
-void forwardListTest()
+// 关联式容器，可以重复, 红黑树
+void mulitisetTest()
 {
-    std::forward_list<std::string> li;
+    std::multiset<std::string> mulSet;
     char buf[10]{};
-
+    
     Timer timer;
     constexpr long value = 1000000;
     for (long i = 0; i < value; ++i)
@@ -20,7 +20,7 @@ void forwardListTest()
         try
         {
             snprintf(buf, 10, "%d", rand());
-            li.push_front(buf);
+            mulSet.insert(buf);
         }
         catch (std::exception& e)
         {
@@ -30,22 +30,27 @@ void forwardListTest()
         }
     }
     std::cout << "milli-seconds:" << timer.elapsed() << " ms" << std::endl;
-    std::cout << "li.max_size():" << li.max_size() << std::endl;
-    std::cout << "li.front():" << li.front() << std::endl;
+    std::cout << "mulSet.size():" << mulSet.size() << std::endl;
+    std::cout << "mulSet.max_size():" << mulSet.max_size() << std::endl;
 
     std::string target = "23456";
     {
         timer.reset();
-        auto item = std::find(li.begin(), li.end(), target);
+        auto item = std::find(mulSet.begin(), mulSet.end(), target);
         std::cout << "find() milli-seconds:" << timer.elapsed() << " ms\n";
-        if (item != li.end())
+        if (item != mulSet.end())
             std::cout << "found " << *item << std::endl;
         else
             std::cout << "not found!" << std::endl;
     }
     {
         timer.reset();
-        li.sort();
-        std::cout << "sort milli-seconds:" << timer.elapsed() << " ms\n";
+        auto item = mulSet.find(target);
+        // 自带的find快很多
+        std::cout << "mulSet.find() milli-seconds:" << timer.elapsed() << " ms\n";
+        if (item != mulSet.end())
+            std::cout << "found " << *item << std::endl;
+        else
+            std::cout << "not found!" << std::endl;
     }
 }

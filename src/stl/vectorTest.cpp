@@ -59,7 +59,7 @@ void vectorTest()
         timer.reset();
         // 标准库的查找
         auto item = std::find(vec.begin(), vec.end(), target);
-        std::cout << "find() milli-seconds:" << timer.elapsedSecond() << " s\n";
+        std::cout << "find() milli-seconds:" << timer.elapsed() << " ms\n";
         if (item != vec.end())
             std::cout << "found " << *item << std::endl;
         else
@@ -68,9 +68,9 @@ void vectorTest()
     {
         timer.reset();
         std::sort(vec.begin(), vec.end());
-        std::cout << "sort milli-seconds:" << timer.elapsedSecond() << " s\n";
+        std::cout << "sort milli-seconds:" << timer.elapsed() << " ms\n";
         auto* item = (std::string*)std::bsearch(&target, vec.data(), vec.size(), sizeof(std::string), compareString);
-        std::cout << "sort + bsearch() milli-seconds:" << timer.elapsedSecond() << " s\n";
+        std::cout << "sort + bsearch() milli-seconds:" << timer.elapsed() << " ms\n";
         if (item != nullptr)
             std::cout << "found ";
         else

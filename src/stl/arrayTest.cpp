@@ -21,7 +21,7 @@ void arrayTest()
     {
         arr[i] = rand();
     }
-    std::cout << "milli-seconds:" << timer.elapsedSecond() << "s" << std::endl;
+    std::cout << "milli-seconds:" << timer.elapsed() << " ms" << std::endl;
     std::cout << "array.size():" << arr.size() << std::endl;
     std::cout << "array.front():" << arr.front() << std::endl;
     std::cout << "array.back():" << arr.back() << std::endl;
@@ -31,7 +31,7 @@ void arrayTest()
     timer.reset();
     std::qsort(arr.data(), ARRAY_SIZE, sizeof(long), compareLongs);
     auto* item = (long*)std::bsearch(&target, (arr.data()), ARRAY_SIZE, sizeof(long), compareLongs);
-    std::cout << "qsort + bsearch, milli-seconds:" << timer.elapsedSecond() << "s" << std::endl;
+    std::cout << "qsort + bsearch, milli-seconds:" << timer.elapsed() << " ms" << std::endl;
     if (item != nullptr)
         std::cout << "found ";
     else

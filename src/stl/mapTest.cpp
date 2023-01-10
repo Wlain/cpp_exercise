@@ -4,12 +4,13 @@
 
 #include "timer.h"
 
-#include <forward_list>
 #include <iostream>
+#include <map>
 
-void forwardListTest()
+// 使用：红黑树实现,不可重复
+void mapTest()
 {
-    std::forward_list<std::string> li;
+    std::map<long, std::string> m;
     char buf[10]{};
 
     Timer timer;
@@ -20,7 +21,7 @@ void forwardListTest()
         try
         {
             snprintf(buf, 10, "%d", rand());
-            li.push_front(buf);
+            m[i] = buf;
         }
         catch (std::exception& e)
         {
@@ -30,22 +31,17 @@ void forwardListTest()
         }
     }
     std::cout << "milli-seconds:" << timer.elapsed() << " ms" << std::endl;
-    std::cout << "li.max_size():" << li.max_size() << std::endl;
-    std::cout << "li.front():" << li.front() << std::endl;
+    std::cout << "m.size():" << m.size() << std::endl;
+    std::cout << "m.max_size():" << m.max_size() << std::endl;
 
-    std::string target = "23456";
+    constexpr long target = 23456;
     {
         timer.reset();
-        auto item = std::find(li.begin(), li.end(), target);
+        auto item = m.find(target);
         std::cout << "find() milli-seconds:" << timer.elapsed() << " ms\n";
-        if (item != li.end())
-            std::cout << "found " << *item << std::endl;
+        if (item != m.end())
+            std::cout << "found " << (*item).second << std::endl;
         else
             std::cout << "not found!" << std::endl;
-    }
-    {
-        timer.reset();
-        li.sort();
-        std::cout << "sort milli-seconds:" << timer.elapsed() << " ms\n";
     }
 }
